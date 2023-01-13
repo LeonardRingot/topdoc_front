@@ -1,0 +1,52 @@
+
+.headerdash
+{
+  background-color: #107aca;
+  text-align: center;
+  height: 100px;
+ color: white;
+}
+.logo{
+  float: left;
+  margin: 25px;
+
+}
+.buttongrp{
+  margin: 25px;
+  float: right
+}
+
+.buttonLogin{
+  background-color: #f9fcff;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 5px 15px;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 30px;
+  margin-left: 5px;
+  
+  
+}
+.buttonRegister{
+  background-color: #f9fcff;
+  border: none;
+  color: rgb(0, 0, 0);
+  padding: 5px 15px;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 30px;
+  margin-left: 5px;
+  
+}
+.footer
+{
+  background-color: #107aca;
+  text-align: center;
+  height: 30vh;
+ color: white;
+}
+.docflopimgdiv{
+  text-align: right;
+  
+}
