@@ -28,6 +28,16 @@
   
   
 }
+.registerpraticiens{
+  
+  
+  text-align: center;
+}
+.login{
+  
+  
+  text-align: center;
+}
 .buttonRegister{
   background-color: #f9fcff;
   border: none;
@@ -39,14 +49,14 @@
   margin-left: 5px;
   
 }
-.footer
-{
-  background-color: #107aca;
-  text-align: center;
-  height: 30vh;
- color: white;
-}
+
 .docflopimgdiv{
   text-align: right;
   
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
