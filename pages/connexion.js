@@ -5,12 +5,18 @@ import * as ServiceAPI from '../services/ServiceAPI.js'
 import {useCookies} from 'react-cookie'
 import * as React from 'react'
 import styles from "../styles/Home.module.css"
-import {LocalizationProvider, MobileDatePicker} from "@mui/x-date-pickers"
+import {LocalizationProvider} from "@mui/x-date-pickers"
+import { Unstable_DateField as DateField } from '@mui/x-date-pickers/DateField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es-us'
 import Box  from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import  TextField  from '@mui/material/TextField'
 export default function Connexion (){
     const Router = useRouter()
@@ -22,7 +28,12 @@ export default function Connexion (){
     })
 
     const [date, setDate] = useState(dayjs())
+    const [expanded, setExpanded] = React.useState('panel1');
 
+    const handleChangeAccordeoon = (panel) => (event, isExpanded) => {
+      setExpanded(isExpanded ? panel : false);
+      console.log(panel);
+    };
     const [InscriptionFormPatients, setInscriptionFormPatients]= useState({
         td_numberVitalCode:'',
         td_lastname:'',
@@ -34,14 +45,6 @@ export default function Connexion (){
     })
 
     const [cookie, setCookie, removeCookie] = useCookies(["user"]);
-    function myFunction() {
-      var x = document.getElementById("myDIV");
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-    }
     const handleChange = (e) =>
     {
      
@@ -109,8 +112,20 @@ export default function Connexion (){
     }
     return (
       <div className={styles.login}>
+        <div className={styles.accordeon}>
         <h1>Formulaire de connexion </h1>
-<Box component="form" noValidate  onSubmit={ScriptFormConnexion} method="post"sx={{p: 2, border: '1px solid  black', width:'50%', textAlign:'center' ,display:'inline-block'}} >
+        <Box component="form" noValidate  onSubmit={ScriptFormConnexion} method="post"  sx={{p: 2, width:'50%', textAlign:'center' ,display:'inline-block'}} >
+        <Accordion  expanded={expanded === 'panel1'} onChange={handleChangeAccordeoon('panel1')}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1bh-content"
+          id="panel1bh-header"
+        >
+          <Typography sx={{    flexShrink: 0 }}>J'ai deja un compte docFlop</Typography>
+          
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
           <TextField 
           onChange={handleChange}
           margin='normal'
@@ -131,18 +146,29 @@ export default function Connexion (){
          label="Mot de passe"
           />
           <Button type="submit" value="submit" >Envoyer</Button>
-       </Box>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      </Box>
+      
+      </div>
+        
+
        <p>Pas de compte ? Inscrivez-vous !</p>
 
-
-
-     
-     {/* --------------------------------------------------- FORMULAIRE INSCRIPTION ------------------------------------------------------------------------------------------------*/}
-
-
-      <Button onClick={myFunction} >S'inscrire</Button>
-      <div style={{display:'none'}} id="myDIV">
-  <Box component="form" noValidate  onSubmit={ScriptFormHidden} method="post" sx={{ p: 2, border: '1px solid  black', width:'50%', textAlign:'center' ,display:'inline-block' }} >
+        
+      <Box component="form" noValidate  onSubmit={ScriptFormHidden} method="post" sx={{p: 2, width:'50%', textAlign:'center' ,display:'inline-block'}} >
+      <Accordion expanded={expanded === 'panel2'}  onChange={handleChangeAccordeoon('panel2')}  >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
+        >
+          <Typography sx={{  flexShrink: 0 }}>Nouveau sur DocFlop ?</Typography>
+          <Button   >S'inscrire</Button>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
           <TextField 
           onChange={handleChange}
           margin='normal'
@@ -174,14 +200,14 @@ export default function Connexion (){
          label="Prenom"
           />
           <LocalizationProvider  dateAdapter={AdapterDayjs}>
-            <MobileDatePicker
+          
+            <DateField
             label="td_birthday"
-            inputFormat='YYYY/MM/DD'
+            
             name="td_birthday"
-            type="date"
+            
             value={date}
             onChange={newDate => setDate(dayjs(newDate, "YYYY/MM/DD").format())}
-            renderInput={(props) => <TextField  {...props}  />}
             />
           </LocalizationProvider>
           
@@ -217,9 +243,12 @@ export default function Connexion (){
           />
 
           <Button type="submit" value="submit" >Envoyer</Button>
-       </Box>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      </Box>
 </div>
-      </div>
+      
        
     )
 }

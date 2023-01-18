@@ -8,16 +8,18 @@ export default function Header(){
         <>
         <div className={styles.headerdash}>
             <div></div>
-        <ButtonGroup variant="contained" aria-label="outlined primary button group"/>
-        
+
     <h3 href="#"className={styles.logo}> DocFlop</h3>
     <div className={styles.buttongrp}>
+    <ButtonGroup variant="contained" aria-label="outlined primary button group">
+
     <Link href="/registerpraticien">
       <Button>Vous êtes praticiens</Button>
       </Link>
       <Link href="/connexion">
           <Button  >Connexion</Button>
         </Link>
+        </ButtonGroup>
     </div>
     </div>
         
