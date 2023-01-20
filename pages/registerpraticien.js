@@ -17,13 +17,13 @@ export default function Registerpraticien()
     const[IsOk, setIsOk] = useState('');
     const [date, setDate] = useState(dayjs())
     const [InscriptionForm, setInscriptionForm]= useState({
-        td_activite:'',
-        td_lastname:'',
-        td_firstname:'',
-        td_birthday:'',
-        td_email:'',
-        td_password:'',
-        td_phone:'',
+        activite:'',
+        lastname:'',
+        firstname:'',
+        birthday:'',
+        email:'',
+        password:'',
+        phone:'',
     })
     const handleChange = (e) =>
     {
@@ -35,24 +35,24 @@ export default function Registerpraticien()
     function ScriptForm (event) 
     {
       const data = {
-        td_activite:event.target.td_activite.value,
-        td_lastname:event.target.td_lastname.value,
-        td_firstname:event.target.td_firstname.value,
-        td_birthday:`${new Date(date)}`,
-        td_email:event.target.td_email.value,
-        td_password:event.target.td_password.value,
-        td_phone:event.target.td_phone.value,
+        activite:event.target.activite.value,
+        lastname:event.target.lastname.value,
+        firstname:event.target.firstname.value,
+        birthday:`${new Date(date)}`,
+        email:event.target.email.value,
+        password:event.target.password.value,
+        phone:event.target.phone.value,
 
       }
       event.preventDefault()
-      ServiceAPI.requetePostPraticien(data.td_activite,
-        data.td_lastname, 
-        data.td_firstname,
-        data.td_birthday,
-        data.td_email,
-        data.td_password,
-        data.td_phone ).then(response => {
-          console.log(data.td_birthday)
+      ServiceAPI.requetePostPraticien(data.activite,
+        data.lastname, 
+        data.firstname,
+        data.birthday,
+        data.email,
+        data.password,
+        data.phone ).then(response => {
+          console.log(data.birthday)
           if(response.status == 200){
             setIsOk('Compte crée');
           } else {
@@ -72,8 +72,8 @@ export default function Registerpraticien()
           margin='normal'
           fullWidth
           required
-         id="td_activite"
-         name="td_activite"
+         id="activite"
+         name="activite"
          label="Activite"
           />
           <TextField 
@@ -81,8 +81,8 @@ export default function Registerpraticien()
           onChange={handleChange}
           required
           fullWidth
-         id="td_lastname"
-         name="td_lastname"
+         id="lastname"
+         name="lastname"
          type="text"
          label="Nom"
           />
@@ -91,16 +91,16 @@ export default function Registerpraticien()
           onChange={handleChange}
           required
           fullWidth
-         id="td_firstname"
-         name="td_firstname"
+         id="firstname"
+         name="firstname"
          type="text"
          label="Prenom"
           />
           <LocalizationProvider  dateAdapter={AdapterDayjs}>
             <MobileDatePicker
-            label="td_birthday"
+            label="birthday"
             inputFormat='YYYY/MM/DD'
-            name="td_birthday"
+            name="birthday"
             type="date"
             value={date}
             onChange={newDate => setDate(dayjs(newDate, "YYYY/MM/DD").format())}
@@ -112,8 +112,8 @@ export default function Registerpraticien()
           onChange={handleChange}
           required
           fullWidth
-         id="td_email"
-         name="td_email"
+         id="email"
+         name="email"
          type="email"
          label="Adresse mail"
           />
@@ -122,8 +122,8 @@ export default function Registerpraticien()
           onChange={handleChange}
           required
           fullWidth
-         id="td_password"
-         name="td_password"
+         id="password"
+         name="password"
          type="password"
          label="Mot de passe "
           />
@@ -132,8 +132,8 @@ export default function Registerpraticien()
           onChange={handleChange}
           required
           fullWidth
-         id="td_phone"
-         name="td_phone"
+         id="phone"
+         name="phone"
          type="tel"
          label="Numéro de telephone "
           />

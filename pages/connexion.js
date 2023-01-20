@@ -23,8 +23,8 @@ export default function Connexion (){
     const [erreur, setErreur] = useState('');
     const[IsOk, setIsOk] = useState('');
     const [ConnexionForm, setConnexionform]= useState({
-      td_email:'',
-      td_password:'',
+      email:'',
+      password:'',
     })
 
     const [date, setDate] = useState(dayjs())
@@ -35,13 +35,13 @@ export default function Connexion (){
       console.log(panel);
     };
     const [InscriptionFormPatients, setInscriptionFormPatients]= useState({
-        td_numberVitalCode:'',
-        td_lastname:'',
-        td_firstname:'',
-        td_birthday:'',
-        td_email:'',
-        td_password:'',
-        td_phone:'',
+        numberVitalCode:'',
+        lastname:'',
+        firstname:'',
+        birthday:'',
+        email:'',
+        password:'',
+        phone:'',
     })
 
     const [cookie, setCookie, removeCookie] = useCookies(["user"]);
@@ -61,24 +61,24 @@ export default function Connexion (){
     function ScriptFormHidden (event) 
     {
       const data = {
-        td_numbervitalCode:event.target.td_numbervitalCode.value,
-        td_lastname:event.target.td_lastname.value,
-        td_firstname:event.target.td_firstname.value,
-        td_birthday:`${new Date(date)}`,
-        td_email:event.target.td_email.value,
-        td_password:event.target.td_password.value,
-        td_phone:event.target.td_phone.value,
+        numbervitalCode:event.target.numbervitalCode.value,
+        lastname:event.target.lastname.value,
+        firstname:event.target.firstname.value,
+        birthday:`${new Date(date)}`,
+        email:event.target.email.value,
+        password:event.target.password.value,
+        phone:event.target.phone.value,
 
       }
       event.preventDefault()
-      ServiceAPI.requetePostPatients(data.td_numbervitalCode,
-        data.td_lastname, 
-        data.td_firstname,
-        data.td_birthday,
-        data.td_email,
-        data.td_password,
-        data.td_phone ).then(response => {
-          console.log(data.td_birthday)
+      ServiceAPI.requetePostPatients(data.numbervitalCode,
+        data.lastname, 
+        data.firstname,
+        data.birthday,
+        data.email,
+        data.password,
+        data.phone ).then(response => {
+          console.log(data.birthday)
           if(response.status == 200){
             setIsOk('Compte crée');
           } else {
@@ -92,14 +92,14 @@ export default function Connexion (){
     {
       event.preventDefault()
       const data = {
-        td_email:event.target.td_email.value,
-        td_password:event.target.td_password.value,
+        email:event.target.email.value,
+        password:event.target.password.value,
       }
-      ServiceAPI.requetePostConnexion(data.td_email, data.td_password).then(response => {
+      ServiceAPI.requetePostConnexion(data.email, data.password).then(response => {
        
           if(response.status == 200){          
             Router.push({pathname:`${process.env.NEXT_PUBLIC_URL_ACCUEILPATIENTS}`});
-            setCookie("user", [response.data.accessToken, response.data.refreshToken, data.td_email], "/");
+            setCookie("user", [response.data.accessToken, response.data.refreshToken, data.email], "/");
             console.log("COOKIE CREATED");
             console.log(response.data.accessToken)
           } else {
@@ -132,7 +132,7 @@ export default function Connexion (){
           fullWidth
           required
          id="email"
-         name="td_email"
+         name="email"
          label="Adress mail"
           />
           <TextField 
@@ -141,7 +141,7 @@ export default function Connexion (){
           required
           fullWidth
          id="password"
-         name="td_password"
+         name="password"
          type="password"
          label="Mot de passe"
           />
@@ -174,9 +174,9 @@ export default function Connexion (){
           margin='normal'
           fullWidth
           required
-         id="td_numbervitalCode"
-         name="td_numbervitalCode"
-         label="td_numbervitalCode"
+         id="numbervitalCode"
+         name="numbervitalCode"
+         label="numbervitalCode"
          type="tel"
           />
           <TextField 
@@ -184,8 +184,8 @@ export default function Connexion (){
           onChange={handleChange}
           required
           fullWidth
-         id="td_lastname"
-         name="td_lastname"
+         id="lastname"
+         name="lastname"
          type="text"
          label="Nom"
           />
@@ -194,17 +194,17 @@ export default function Connexion (){
           onChange={handleChange}
           required
           fullWidth
-         id="td_firstname"
-         name="td_firstname"
+         id="firstname"
+         name="firstname"
          type="text"
          label="Prenom"
           />
           <LocalizationProvider  dateAdapter={AdapterDayjs}>
           
             <DateField
-            label="td_birthday"
+            label="birthday"
             
-            name="td_birthday"
+            name="birthday"
             
             value={date}
             onChange={newDate => setDate(dayjs(newDate, "YYYY/MM/DD").format())}
@@ -216,8 +216,8 @@ export default function Connexion (){
           onChange={handleChange}
           required
           fullWidth
-         id="td_email"
-         name="td_email"
+         id="email"
+         name="email"
          type="email"
          label="Adresse mail"
           />
@@ -226,8 +226,8 @@ export default function Connexion (){
           onChange={handleChange}
           required
           fullWidth
-         id="td_password"
-         name="td_password"
+         id="password"
+         name="password"
          type="password"
          label="Mot de passe "
           />
@@ -236,8 +236,8 @@ export default function Connexion (){
           onChange={handleChange}
           required
           fullWidth
-         id="td_phone"
-         name="td_phone"
+         id="phone"
+         name="phone"
          type="tel"
          label="Numéro de telephone "
           />

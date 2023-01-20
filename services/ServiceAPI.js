@@ -1,11 +1,11 @@
 import axios from "axios";
 
 
-export function requetePostConnexion(td_email, td_password) {
+export function requetePostConnexion(email, password) {
   
   var data = JSON.stringify({
-    "td_email":td_email,
-    "td_password": td_password
+    "email":email,
+    "password": password
     
   });
   var configConnexion = {
@@ -21,17 +21,17 @@ export function requetePostConnexion(td_email, td_password) {
   return axios(configConnexion);
 }
 
-export function requetePostPraticien(td_activite, td_lastname, td_firstname,td_birthday, td_email, td_password, td_phone) {
+export function requetePostPraticien(activite, lastname, firstname,birthday, email, password, phone) {
  
   var data = JSON.stringify({
-      "td_activite": td_activite,
-      "td_lastname": td_lastname,
-      "td_firstname":td_firstname,
-      "td_birthday":td_birthday,
-      "td_email": td_email,
-      "td_password":td_password,
-      "td_phone": td_phone,
-      "td_isActif": true
+      "activite": activite,
+      "lastname": lastname,
+      "firstname":firstname,
+      "birthday":birthday,
+      "email": email,
+      "password":password,
+      "phone": phone,
+      "isActif": true
   });
   var config = {
     method: 'post',
@@ -44,17 +44,17 @@ export function requetePostPraticien(td_activite, td_lastname, td_firstname,td_b
   return axios(config);
 }
 
-export function requetePostPatients(td_numbervitalCode, td_lastname, td_firstname,td_birthday, td_email, td_password, td_phone) {
+export function requetePostPatients(numbervitalCode, lastname, firstname,birthday, email, password, phone) {
  
   var data = JSON.stringify({
-      "td_numbervitalCode": td_numbervitalCode,
-      "td_lastname": td_lastname,
-      "td_firstname":td_firstname,
-      "td_birthday":td_birthday,
-      "td_email": td_email,
-      "td_password":td_password,
-      "td_phone": td_phone,
-      "td_isActif": true
+      "numbervitalCode": numbervitalCode,
+      "lastname": lastname,
+      "firstname":firstname,
+      "birthday":birthday,
+      "email": email,
+      "password":password,
+      "phone": phone,
+      "isActif": true
   });
   var config = {
     method: 'post',
