@@ -10,7 +10,6 @@ import 'dayjs/locale/es-us'
 import Box  from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import  TextField  from '@mui/material/TextField'
-import { display } from '@mui/system';
 export default function Registerpraticien()
 {
     const [erreur, setErreur] = useState('');
