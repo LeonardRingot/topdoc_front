@@ -79,3 +79,14 @@ export function requeteGetAllPraticiens(firstname, lastname, address, zipCode, c
   };
   return axios(configGetAllUsersPraticiens);
 }
+export function requeteGetPlanning() {
+  var configGetPlanning = {
+    method: 'get',
+    url: `${process.env.NEXT_PUBLIC_URL}planning/1`,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+
+  };
+  return axios(configGetPlanning);
+}
