@@ -42,10 +42,10 @@ export default function Accueilpraticiens(){
                     <h6>{element.jour}</h6>
                 </td>
                 <td>  
-                    <h6>{element.creneaux.StartHour}</h6>
+                    <h6>{element.creneaux[0].StartHour}</h6>
                 </td>
                 <td>
-                    <h6>{element.creneaux.EndHour}</h6>
+                    <h6>{element.creneaux[0].EndHour}</h6>
                 </td>
                 
               {console.log(data.element)}
